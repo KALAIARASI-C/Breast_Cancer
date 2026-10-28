@@ -1,48 +1,52 @@
 /**
- * Breast CARE-MA — Curated Clinical Mock Fixtures
- * For offline development and fallback demonstration.
- * All records strictly conform to the 6-agent Pydantic schemas.
+ * Breast CARE-MA — Development Mock Data Fixtures
+ * Assigned Frontend Developer: Kalaiarasi C
+ * 
+ * NOTE: These are clearly labelled client-side mock fixtures used for frontend
+ * UI testing and offline development until teammate backend modules are connected.
+ * Do not mistake these fixtures for clinical predictions or ground truth.
  */
 
 export const MOCK_ANALYSES = [
   {
+    isMock: true,
+    mockNotice: "DEVELOPMENT MOCK FIXTURE — Awaiting Teammate Backend (Partha Sarathy)",
     analysis_id: "ANL-DEMO001",
     patient_id: "BRCA-PT-8842",
     modality: "MRI_DCE",
-    status: "COMPLETED",
+    status: "MOCK_COMPLETED",
     created_at: "2026-10-28T14:30:00Z",
     updated_at: "2026-10-28T14:31:12Z",
     filename: "sample_breast_mri_dce.png",
     filesize_bytes: 482104,
-    original_image_url: "/storage/uploads/sample_breast_mri_dce.png",
-    original_image_path: "storage/uploads/sample_breast_mri_dce.png",
+    original_image_url: "/mock/sample_breast_mri.png",
     progress_percentage: 100,
-    active_agent: "Completed",
+    active_agent: "Awaiting Live Backend",
     timeline: [
-      { step: "Upload & Ingestion", status: "COMPLETED", timestamp: "2026-10-28T14:30:02Z", detail: "Validated DCE-MRI slice (320x320)" },
-      { step: "Agent 1: Tumor Detection", status: "COMPLETED", timestamp: "2026-10-28T14:30:15Z", detail: "Detected 1 focal lesion (IoU candidate)" },
-      { step: "Agent 2: Tumor Classification", status: "COMPLETED", timestamp: "2026-10-28T14:30:30Z", detail: "Predicted Malignant (88.0% confidence)" },
-      { step: "Agent 3: Grad-CAM Explainability", status: "COMPLETED", timestamp: "2026-10-28T14:30:45Z", detail: "Focal Layer4 activation at (175, 110)" },
-      { step: "Agent 4: Evidence Retrieval (RAG)", status: "COMPLETED", timestamp: "2026-10-28T14:30:58Z", detail: "Retrieved 3 grounded PubMed/PMC citations" },
-      { step: "Agent 5: Risk Assessment", status: "COMPLETED", timestamp: "2026-10-28T14:31:05Z", detail: "Assigned BI-RADS 5 (High Suspicion)" },
-      { step: "Agent 6: Report Generation", status: "COMPLETED", timestamp: "2026-10-28T14:31:12Z", detail: "Generated PDF report with embedded heatmaps" }
+      { step: "Upload & Ingestion", status: "COMPLETED", timestamp: "2026-10-28T14:30:02Z", detail: "Validated DCE-MRI slice (320x320) [MOCK]" },
+      { step: "Agent 1: Tumor Detection", status: "COMPLETED", timestamp: "2026-10-28T14:30:15Z", detail: "Simulated 1 focal lesion (IoU candidate) [MOCK]" },
+      { step: "Agent 2: Tumor Classification", status: "COMPLETED", timestamp: "2026-10-28T14:30:30Z", detail: "Simulated Malignant (88.0% confidence) [MOCK]" },
+      { step: "Agent 3: Grad-CAM Explainability", status: "COMPLETED", timestamp: "2026-10-28T14:30:45Z", detail: "Simulated Layer4 activation at (175, 110) [MOCK]" },
+      { step: "Agent 4: Evidence Retrieval (RAG)", status: "COMPLETED", timestamp: "2026-10-28T14:30:58Z", detail: "Simulated 3 PubMed/PMC citations [MOCK]" },
+      { step: "Agent 5: Risk Assessment", status: "COMPLETED", timestamp: "2026-10-28T14:31:05Z", detail: "Simulated BI-RADS 5 (High Suspicion) [MOCK]" },
+      { step: "Agent 6: Report Generation", status: "COMPLETED", timestamp: "2026-10-28T14:31:12Z", detail: "Simulated PDF report preview [MOCK]" }
     ],
     agent1_detection: {
       agent_id: "agent_1",
-      status: "COMPLETED",
-      model_identifier: "YOLOv8-BreastMRI-v1.0",
+      status: "MOCK_COMPLETED",
+      model_identifier: "YOLOv8-BreastMRI-v1.0 (Mock Staged)",
       lesions_detected: 1,
       bounding_boxes: [
-        { x_min: 145, y_min: 82, x_max: 205, y_max: 138, confidence: 0.89, label: "Suspected Infiltrative Mass" }
+        { x_min: 145, y_min: 82, x_max: 205, y_max: 138, confidence: 0.89, label: "Simulated Focal Lesion" }
       ],
-      annotated_image_url: "/storage/uploads/annotated_detection_ANL-DEMO001.png",
+      annotated_image_url: "/mock/sample_breast_mri.png",
       lesion_area_percentage: 3.84,
       execution_time_ms: 182.4
     },
     agent2_classification: {
       agent_id: "agent_2",
-      status: "COMPLETED",
-      model_identifier: "ResNet50-BreastMRI-Classifier-v2.1",
+      status: "MOCK_COMPLETED",
+      model_identifier: "ResNet50-Classifier-v2.1 (Mock Staged)",
       predicted_class: "Malignant",
       confidence: 0.88,
       probabilities: [
@@ -54,16 +58,17 @@ export const MOCK_ANALYSES = [
       execution_time_ms: 310.2
     },
     agent3_explainability: {
+      isMock: true,
       analysis_id: "ANL-DEMO001",
       agent_id: "agent_3",
-      status: "COMPLETED",
+      status: "MOCK_COMPLETED",
       source_agent_ids: ["agent_1", "agent_2"],
       target_class: "Malignant",
-      original_image_url: "/storage/uploads/sample_breast_mri_dce.png",
-      heatmap_url: "/storage/heatmaps/gradcam_heatmap_ANL-DEMO001.png",
-      overlay_url: "/storage/heatmaps/gradcam_overlay_ANL-DEMO001.png",
-      model_identifier: "ResNet50-Layer4-GradCAM",
-      attribution_interpretation: "Grad-CAM visual attribution concentrated in malignant feature space with peak activation at coordinate (175, 110). The high-salience region covers 4.20% of the slice, exhibiting strong spatial concurrence with Agent 1 detection (IoU=0.762).",
+      original_image_url: "/mock/sample_breast_mri.png",
+      heatmap_url: "/mock/gradcam_heatmap.png",
+      overlay_url: "/mock/gradcam_overlay.png",
+      model_identifier: "ResNet50-Layer4-GradCAM (Mock Visualization)",
+      attribution_interpretation: "[SIMULATED MOCK ATTRIBUTION] Grad-CAM visual attribution concentrated in malignant feature space with peak activation at coordinate (175, 110). High-salience region covers 4.20% of the slice.",
       target_box_overlap_iou: 0.762,
       execution_time_ms: 245.8,
       explanation_metadata: {
@@ -78,18 +83,17 @@ export const MOCK_ANALYSES = [
         heatmap_resolution: [320, 320],
         colormap: "jet",
         alpha_blend: 0.55,
-        computation_engine: "PyTorch-GradCAM-v1.0"
+        computation_engine: "Frontend-Mock-Engine"
       }
     },
     agent4_evidence: {
       agent_id: "agent_4",
-      status: "COMPLETED",
-      retrieval_system: "Qdrant-Hybrid-Biomedical-RAG",
+      status: "MOCK_COMPLETED",
+      retrieval_system: "Qdrant-Hybrid-Biomedical-RAG (Mock)",
       evidence_count: 3,
       query_terms: [
         "breast dynamic contrast-enhanced MRI malignant morphology",
-        "BI-RADS kinetic curve plateau and washout",
-        "focal parenchymal enhancement neoplastic differentiation"
+        "BI-RADS kinetic curve plateau and washout"
       ],
       retrieved_evidence: [
         {
@@ -113,56 +117,43 @@ export const MOCK_ANALYSES = [
           retrieved_excerpt: "High Grad-CAM spatial activation on ResNet convolutional feature maps strongly correlates with histologically confirmed invasive boundaries (mean IoU 0.74).",
           clinical_relevance_score: 0.93,
           evidence_type: "Peer-Reviewed Multi-Center Study"
-        },
-        {
-          source_id: "NCCN-BC-2024",
-          title: "NCCN Clinical Practice Guidelines in Oncology: Breast Cancer Screening and Diagnosis",
-          authors: "National Comprehensive Cancer Network Panel",
-          journal: "NCCN Clinical Practice Guidelines",
-          year: 2024,
-          doi_or_url: "https://www.nccn.org/guidelines/breast-cancer",
-          retrieved_excerpt: "For mass lesions presenting with irregular margins and non-circumscribed rim enhancement, core needle biopsy under ultrasound or MRI guidance is indicated (Category 2A).",
-          clinical_relevance_score: 0.98,
-          evidence_type: "Clinical Practice Guideline"
         }
       ],
-      knowledge_graph_links: ["Neo4j:Gene:BRCA1", "Neo4j:Entity:InvasiveDuctalCarcinoma"],
       execution_time_ms: 412.0
     },
     agent5_risk: {
       agent_id: "agent_5",
-      status: "COMPLETED",
+      status: "MOCK_COMPLETED",
       birads: {
         category: "BI-RADS 5",
-        description: "Highly Suggestive of Malignancy",
+        description: "Highly Suggestive of Malignancy (Mock Staged)",
         malignancy_risk_percent: "> 95%"
       },
       composite_risk_score: 92.5,
       risk_category: "High Suspicion",
       primary_risk_factors: [
-        { indicator: "Focal Parenchymal Enhancement", weight: 0.40, description: "Significant focal contrast enhancement in upper outer quadrant" },
-        { indicator: "Morphologic Margin Spiculation", weight: 0.35, description: "Irregular infiltrative border pattern" },
-        { indicator: "Grad-CAM Spatial Concurrence", weight: 0.25, description: "High model attribution localized to primary lesion" }
+        { indicator: "Focal Parenchymal Enhancement", weight: 0.40, description: "Simulated focal contrast enhancement" },
+        { indicator: "Morphologic Margin Spiculation", weight: 0.35, description: "Irregular infiltrative border pattern" }
       ],
-      clinical_recommendation: "Histopathological verification recommended via image-guided core needle biopsy. Multidisciplinary tumor board consultation indicated.",
+      clinical_recommendation: "Histopathological verification recommended via image-guided core needle biopsy. (Simulated Recommendation)",
       followup_interval_months: 1,
       execution_time_ms: 120.5
     },
     agent6_report: {
       agent_id: "agent_6",
-      status: "COMPLETED",
-      report_id: "REP-DEMO001",
+      status: "MOCK_COMPLETED",
+      report_id: "REP-MOCK-001",
       case_id: "ANL-DEMO001",
-      pdf_report_url: "/storage/reports/BreastCARE_Report_ANL-DEMO001.pdf",
+      pdf_report_url: "/mock/sample_report.pdf",
       summary: {
         case_id: "ANL-DEMO001",
         patient_id: "BRCA-PT-8842",
-        imaging_finding: "Suspicious focal lesion with rapid enhancement",
+        imaging_finding: "Simulated focal enhancing lesion",
         model_prediction: "Malignant",
         confidence_display: "88.0%",
         birads_category: "BI-RADS 5",
-        explainability_summary: "Grad-CAM salience concentrated at coordinates (175, 110) with IoU 0.762 concurrence.",
-        evidence_grounding_status: "Verified across RSNA and NCCN guideline citations",
+        explainability_summary: "Simulated Grad-CAM salience concentrated at coordinates (175, 110).",
+        evidence_grounding_status: "Verified in mock clinical studies",
         recommended_action: "Core needle biopsy under MRI guidance",
         requires_clinical_review: true
       },
@@ -178,6 +169,5 @@ export const MOCK_DASHBOARD_STATS = {
   malignancyDetectionRate: "18.3%",
   meanGradCamIoU: "0.784",
   clinicalAuditCompliance: "100%",
-  averagePipelineLatency: "1.8s",
-  activeAgentsCount: 6
+  isMock: true
 };

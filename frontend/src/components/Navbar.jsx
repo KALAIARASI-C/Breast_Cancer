@@ -46,11 +46,11 @@ export default function Navbar({ activeTab, setActiveTab, isLiveBackend }) {
               color: 'var(--accent-cyan)',
               border: '1px solid rgba(6, 182, 212, 0.3)'
             }}>
-              v1.0 RESEARCH
+              FRONTEND & XAI UI
             </span>
           </div>
           <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>
-            Multimodal Multi-Agent Diagnostic Decision Support
+            Lead: Kalaiarasi C • React + Vite Frontend
           </span>
         </div>
       </div>
@@ -117,7 +117,7 @@ export default function Navbar({ activeTab, setActiveTab, isLiveBackend }) {
             display: 'inline-block',
             boxShadow: `0 0 8px ${isLiveBackend ? '#10b981' : '#f59e0b'}`
           }}></span>
-          {isLiveBackend ? 'FastAPI Connected' : 'Mock Mode (Offline)'}
+          {isLiveBackend ? 'Live Backend Connected' : 'Mock Mode (Awaiting Teammate Backend)'}
         </div>
 
         {/* Start Analysis Button */}

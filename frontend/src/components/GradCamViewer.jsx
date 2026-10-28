@@ -124,9 +124,25 @@ export default function GradCamViewer({
           </p>
         </div>
 
-        {/* Target Class Pill */}
+        {/* Target Class Pill & Data Status */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
-          <span style={{ fontSize: '0.78rem', color: 'var(--text-secondary)' }}>Explaining Prediction:</span>
+          {agent3?.isMock && (
+            <span style={{
+              fontSize: '0.68rem',
+              fontWeight: '700',
+              padding: '0.2rem 0.55rem',
+              borderRadius: '6px',
+              backgroundColor: 'rgba(245, 158, 11, 0.15)',
+              color: '#f59e0b',
+              border: '1px solid rgba(245, 158, 11, 0.35)',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.35rem'
+            }}>
+              <Info size={12} /> DEMO MOCK HEATMAP
+            </span>
+          )}
+          <span style={{ fontSize: '0.78rem', color: 'var(--text-secondary)' }}>Explaining Target:</span>
           <span className={`badge ${targetClass === 'Malignant' ? 'badge-malignant' : targetClass === 'Benign' ? 'badge-benign' : 'badge-normal'}`}>
             {targetClass} ({(confidence * 100).toFixed(1)}%)
           </span>
